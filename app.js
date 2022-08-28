@@ -8,8 +8,8 @@ var modalText = document.querySelector('.modal-content');
 var Close_button = document.querySelector('.close');
 
 
-//Step 2 
-// FETCH DATA FROM API 
+//Step 2
+// FETCH DATA FROM API
 
 fetch(url)
   .then(response => response.json())
@@ -30,7 +30,7 @@ function displayEmployees(employeeData) {
   let employeeHTML = '';
   // LOOP THROUGH EACH EMPLOYEE AND CREATE MARKUP
   employees.forEach((employee, i) => {
-    
+
     let name = employee.name;
     let email = employee.email;
     let city = employee.location.city;
@@ -41,7 +41,7 @@ function displayEmployees(employeeData) {
 
   // creating the DOM (HTML layout or View)
     employeeHTML += "<div class= 'directory-container__card'" +"data-index="+ i +">"
-       +" <img src="+picture.large+" alt="+name.first + " " + name.last + " class='card__img'" + " />"
+       +" <img src="+picture.medium+" alt="+name.first + " " + name.last + " class='card__img'" + " />"
         + "<div class='card__info'>"
          + "<h2 class='card__info-name'>" +name.first+ " " +name.last+ " </h2>"
           + "<p class='card__info-email'>"+ email+ "</p>"
@@ -50,7 +50,7 @@ function displayEmployees(employeeData) {
      +" </div> "
      ;
 
-   
+
   });
 
   // appending to the dom
@@ -71,21 +71,22 @@ function modalDisplay(index) {
 
   let date = new Date(dob.date);
   var modalContent = '';
-  modalContent += 
+  modalContent +=
 "<div class='modal-individual data-index='" + index +">"
 +" <img src="+picture.large+" alt="+name.first + " " + name.last + " class='img-modal'" + " />"
     + "<div>"
-      + "<h2 class='card__info-name' >" + name.first+ " "+ name.last + "</h2>"
-       +"<p class='card__info-email'>"+ email+ "</p>"
+      + "<h2 class='modal__info-name' >" + name.first+ " "+ name.last + "</h2>"
+       +"<p class='modal__info-email'>"+ email+ "</p>"
+       +"<p class='modal__info-city'>"+ city+ "</p>"
        +"<hr />"
-       +"<p>"+phone+ "</p>"
-       + "<p class='card__info-address'>"+ street.number+ " <br/>" + city+", "+ state+ " "+ postcode +"</p>"
-       +"<p><strong>Birthday :</strong> " +date.getMonth()+"/"+date.getDate()+"/"+date.getFullYear()+"</p>"
+       +"<p class='modal__phone'>"+phone+ "</p>"
+       + "<p class='modal__info-address'>"+ street.number+ " "+ street.name+ " " +state+ " "+ postcode +"</p>"
+       +"<p class='modal__info-birthday'><strong>Birthday :</strong> " +date.getMonth()+"/"+date.getDate()+"/"+date.getFullYear()+"</p>"
     +" </div>"
    +"</div>"
 ;
 
-  
+
   overlay.classList.remove('hide');
   modalText.innerHTML = modalContent;
 }
@@ -113,9 +114,7 @@ overlay.addEventListener('click', (event) => {
 
   if (event.target == overlay) {
     overlay.classList.add('hide');
-    
+
 }
 
 });
-
-
